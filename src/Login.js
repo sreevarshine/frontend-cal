@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./styles.css";
+import "./login.css";
 
 function Login({ setUser, switchToSignup }) {
   const [email, setEmail] = useState("");
@@ -21,6 +22,7 @@ function Login({ setUser, switchToSignup }) {
         <h1 className="title">📅 Calendar Dashboard</h1>
         <div className="form">
           <h2 className="subtitle">Login</h2>
+          <p className="info-text">You can use any email and password to continue. This is a demo login.</p>
           <div className="input-group">
             <input
               type="email"

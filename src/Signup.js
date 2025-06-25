@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
+import "./signup.css";
+
 
 function Signup({ setUser, switchToLogin }) {
   const [email, setEmail] = useState("");
