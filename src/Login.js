@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./styles.css";
 import "./login.css";
 
 function Login({ setUser, switchToSignup }) {

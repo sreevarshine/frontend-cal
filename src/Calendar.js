@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
+import isBetween from "dayjs/plugin/isBetween";
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import TimeGridView from "./TimeGridView";
+import "./Calendar.css";
+
+// Extend dayjs with plugins
+dayjs.extend(isBetween);
+dayjs.extend(isSameOrBefore);
+dayjs.extend(isSameOrAfter);
 
 const Calendar = ({
   events,
@@ -27,7 +36,7 @@ const Calendar = ({
 
     const days = [];
     let date = start.clone();
-    while (date.isBefore(end, "day") || date.isSame(end, "day")) {
+    while (date.isSameOrBefore(end, "day")) {
       days.push(date.clone());
       date = date.add(1, "day");
     }
@@ -58,6 +67,7 @@ const Calendar = ({
   const renderEvent = (e) => {
     const isMissed =
       dayjs().isAfter(dayjs(`${e.date} ${e.endTime}`)) && !e.completed;
+
     return (
       <div
         key={e.id}
@@ -80,7 +90,7 @@ const Calendar = ({
               setEditEvent(e);
             }}
           >
-            ✏️
+            ✏
           </button>
           <button
             onClick={(ev) => {
@@ -88,7 +98,7 @@ const Calendar = ({
               deleteEvent(e.id);
             }}
           >
-            🗑️
+            🗑
           </button>
           <button
             onClick={(ev) => {
@@ -106,7 +116,7 @@ const Calendar = ({
   return (
     <div className="calendar-container">
       <div className="calendar-nav">
-        <button onClick={() => handleDateChange(-1)}>⬅️</button>
+        <button onClick={() => handleDateChange(-1)}>⬅</button>
         <h2>
           {currentDate.format(
             view === "day"
@@ -116,7 +126,7 @@ const Calendar = ({
               : "MMMM YYYY"
           )}
         </h2>
-        <button onClick={() => handleDateChange(1)}>➡️</button>
+        <button onClick={() => handleDateChange(1)}>➡</button>
       </div>
 
       {view === "day" || view === "week" ? (
@@ -124,13 +134,13 @@ const Calendar = ({
           view={view}
           currentDate={currentDate}
           events={events.filter((e) => {
-            const eventDate = dayjs(e.date).format("YYYY-MM-DD");
+            const eventDate = dayjs(e.date);
             if (view === "day") {
-              return eventDate === currentDate.format("YYYY-MM-DD");
+              return eventDate.isSame(currentDate, "day");
             } else {
               const start = currentDate.startOf("week");
               const end = currentDate.endOf("week");
-              return dayjs(e.date).isBetween(start, end, null, "[]");
+              return eventDate.isBetween(start, end, "day", "[]");
             }
           })}
         />
@@ -148,7 +158,7 @@ const Calendar = ({
       ) : (
         <div className="calendar-grid">
           {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
-            <div key={d} className="day-name">
+            <div key={d} className="day-header">
               {d}
             </div>
           ))}
@@ -163,7 +173,7 @@ const Calendar = ({
                 className={`day-cell ${isToday ? "today" : ""}`}
                 onClick={() => handleDayClick(formatted)}
               >
-                <div className="date-number">{day.date()}</div>
+                <div className="day-number">{day.date()}</div>
                 {groupedEvents[formatted]?.slice(0, 3).map((e, idx) => (
                   <div key={idx} onClick={(ev) => ev.stopPropagation()}>
                     {renderEvent(e)}

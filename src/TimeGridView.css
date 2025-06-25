@@ -1,0 +1,73 @@
+.time-grid {
+  display: flex;
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.time-column {
+  flex: 1;
+  min-width: 0;
+}
+
+.time-label {
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  text-align: right;
+  border-right: 1px solid var(--medium-gray);
+  background: var(--light-gray);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.day-label {
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  background: var(--light-gray);
+  border-bottom: 1px solid var(--medium-gray);
+}
+
+.time-slot {
+  height: 60px;
+  border-bottom: 1px solid var(--medium-gray);
+  position: relative;
+}
+
+.time-event {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  padding: 0.25rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .time-grid {
+    flex-direction: column;
+  }
+
+  .time-column {
+    display: flex;
+  }
+
+  .time-label {
+    width: 60px;
+    height: auto;
+  }
+
+  .time-slot {
+    flex: 1;
+    height: auto;
+    min-height: 60px;
+  }
+}

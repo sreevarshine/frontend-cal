@@ -4,6 +4,7 @@ import Signup from "./Signup";
 import EventForm from "./EventForm";
 import Calendar from "./Calendar";
 import data from "./data.json";
+import "./App.css";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -47,7 +48,6 @@ function App() {
 
   const deleteEvent = (id) => {
     if (!window.confirm("Are you sure you want to delete this event?")) return;
-
     setLoading(true);
     setTimeout(() => {
       setEvents((prev) => prev.filter((ev) => ev.id !== id));
@@ -73,83 +73,72 @@ function App() {
     setMode("login");
   };
 
-  // Render login or signup page
   if (!user) {
     return (
-      <>
+      <div className="auth-container">
         {mode === "login" ? (
           <Login setUser={setUser} switchToSignup={() => setMode("signup")} />
         ) : (
           <Signup setUser={setUser} switchToLogin={() => setMode("login")} />
         )}
-        {error && (
-          <div style={{ color: "red", textAlign: "center", marginTop: "10px" }}>
-            {error}
-          </div>
-        )}
-      </>
+        {error && <div className="error-message">{error}</div>}
+      </div>
     );
   }
 
-  // Main App content
   return (
-    <div
-      className="app"
-      style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "16px",
-        }}
-      >
-        <span>
-          👋 Welcome, <strong>{user.email}</strong>
-        </span>
-        <button onClick={handleLogout}>Logout</button>
-      </div>
+    <div className="app-container">
+      <header className="app-header">
+        <div className="flex justify-between items-center">
+          <span className="user-welcome">
+            👋 Welcome, <strong>{user.email}</strong>
+          </span>
+          <button className="btn btn-secondary" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+      </header>
 
-      <h1 style={{ textAlign: "center" }}>📅 Calendar App</h1>
-
-      <div
-        className="view-toggle"
-        style={{ textAlign: "center", marginBottom: "20px" }}
-      >
-        <label>View:</label>
-        <select value={view} onChange={(e) => setView(e.target.value)}>
+      <div className="view-toggle text-center">
+        <label htmlFor="view-select">View: </label>
+        <select
+          id="view-select"
+          value={view}
+          onChange={(e) => setView(e.target.value)}
+          className="form-input"
+        >
           <option value="day">Day</option>
           <option value="week">Week</option>
           <option value="month">Month</option>
         </select>
       </div>
 
-      {error && (
-        <div style={{ color: "red", padding: "10px", margin: "10px 0" }}>
-          {error}
-        </div>
-      )}
+      <main>
+        <h1 className="text-center mb-4">📅 Calendar App</h1>
 
-      {loading && (
-        <div style={{ textAlign: "center", padding: "20px" }}>Loading...</div>
-      )}
+        {error && <div className="error-message mb-4">{error}</div>}
 
-      <EventForm
-        onAddEvent={addEvent}
-        editEvent={editEvent}
-        setError={setError}
-        loading={loading}
-      />
-
-      <Calendar
-        events={events}
-        setEditEvent={setEditEvent}
-        deleteEvent={deleteEvent}
-        markCompleted={markCompleted}
-        view={view}
-        loading={loading}
-      />
+        {loading ? (
+          <div className="loading">Loading...</div>
+        ) : (
+          <>
+            <EventForm
+              onAddEvent={addEvent}
+              editEvent={editEvent}
+              setError={setError}
+              loading={loading}
+            />
+            <Calendar
+              events={events}
+              setEditEvent={setEditEvent}
+              deleteEvent={deleteEvent}
+              markCompleted={markCompleted}
+              view={view}
+              loading={loading}
+            />
+          </>
+        )}
+      </main>
     </div>
   );
 }
