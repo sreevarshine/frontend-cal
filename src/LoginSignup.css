@@ -1,0 +1,340 @@
+/* styles.css */
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f8f9fa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+    sans-serif;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 380px;
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 8px;
+  color: #2c3e50;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #5a6c7d;
+  margin: 0 0 25px 0;
+}
+
+.form {
+  width: 100%;
+}
+
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  background-color: #fff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.input:focus {
+  border-color: #007bff;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-top: 8px;
+  font-family: inherit;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.switch-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #6c757d;
+  margin: 20px 0 0 0;
+}
+
+.switch-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+  font-family: inherit;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.switch-button:hover {
+  color: #0056b3;
+}
+
+.dashboard-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f8f9fa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+    sans-serif;
+  margin: 0;
+}
+
+.dashboard {
+  text-align: center;
+  background-color: white;
+  padding: 50px 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+  max-width: 450px;
+  width: 100%;
+}
+
+.welcome-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  margin: 0 0 12px 0;
+}
+
+.welcome-text {
+  font-size: 16px;
+  color: #5a6c7d;
+  margin-bottom: 25px;
+  margin: 0 0 25px 0;
+}
+
+.logout-button {
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: inherit;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
+
+/* App styles */
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.view-toggle {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Calendar styles */
+.calendar {
+  margin-top: 20px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.calendar-nav-button {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.calendar-nav-button:hover {
+  background-color: #f0f0f0;
+}
+
+.calendar-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-day-header {
+  text-align: center;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.calendar-day {
+  border: 1px solid #eee;
+  min-height: 80px;
+  padding: 5px;
+}
+
+.calendar-day.empty {
+  background-color: #f9f9f9;
+}
+
+.calendar-day.today {
+  background-color: #e6f7ff;
+}
+
+.calendar-day-number {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.calendar-event {
+  background-color: #e3f2fd;
+  border-radius: 3px;
+  padding: 2px 5px;
+  margin-bottom: 2px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calendar-event.completed {
+  background-color: #e8f5e9;
+  text-decoration: line-through;
+}
+
+/* Event Form styles */
+.event-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.event-form-group {
+  margin-bottom: 15px;
+}
+
+.event-form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.event-form-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.event-form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.event-form-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.event-form-button.primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.event-form-button.primary:hover {
+  background-color: #0069d9;
+}
+
+.event-form-button.secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.event-form-button.secondary:hover {
+  background-color: #5a6268;
+}
+
+.event-form-button.danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.event-form-button.danger:hover {
+  background-color: #c82333;
+}
